@@ -45,6 +45,7 @@ const player2 = Player("O")
 const controller = (() => {
     let currentPlayer = player1;
     const squares = document.querySelectorAll(".square");
+    
     const addMark = (e) => {
         if (e.target.textContent === "") {
             e.target.textContent = currentPlayer.mark;
