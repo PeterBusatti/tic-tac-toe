@@ -31,8 +31,7 @@ const gameBoard = (() => {
 
 gameBoard.init();
 
-const Player = (name, mark) => {
-    name;
+const Player = (mark) => {
     mark;
 
 
@@ -40,12 +39,16 @@ const Player = (name, mark) => {
         mark,
     }
 }
+const player1 = Player("X")
+const player2 = Player("O")
 
 const controller = (() => {
+    let currentPlayer = player1;
     const squares = document.querySelectorAll(".square");
     const addMark = (e) => {
         if (e.target.textContent === "") {
-            e.target.textContent = "X"
+            e.target.textContent = currentPlayer.mark;
+            togglePlayer();
         } 
     }
 
@@ -57,6 +60,13 @@ const controller = (() => {
         squares.forEach(square => {
             square.textContent = "";
         });
+    }
+
+    const togglePlayer = () => {
+        if (currentPlayer === player1) {
+            currentPlayer = player2;
+        }
+        else {currentPlayer = player1;}
     }
 
     return {
