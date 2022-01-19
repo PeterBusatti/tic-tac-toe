@@ -1,0 +1,33 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.gameboard {
+    width: 600px;
+    height: 600px;
+    border: solid red 1px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;  
+}
+
+.middle-row {
+    border-top: solid black 4px;
+    border-bottom: solid black 4px;
+}
+
+.middle-column {
+    border-left: solid black 4px;
+    border-right: solid black 4px;
+}
+
+.middle-square {
+    border: solid black 4px;
+}
+
