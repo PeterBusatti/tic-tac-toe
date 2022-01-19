@@ -22,13 +22,8 @@ const gameBoard = (() => {
         }
     };
     
-    const clearBoard = () => {
-        boardArray = ["", "", "", "", "", "", "", "", ""];
-    };
-    
     return {
         init,
-        clearBoard,
     };
 
 })();
