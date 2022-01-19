@@ -1,5 +1,6 @@
 const gameBoard = (() => {
     const boardDom = document.getElementById("gameboard");
+    
     const boardArray = [];
     
     const init = () => {
@@ -21,7 +22,7 @@ const gameBoard = (() => {
             boardDom.appendChild(square);
         }
     };
-    
+ 
     return {
         init,
     };
@@ -30,10 +31,35 @@ const gameBoard = (() => {
 
 gameBoard.init();
 
-const Player = () => {
+const Player = (name, mark) => {
+    name;
+    mark;
 
+
+    return {
+        mark,
+    }
 }
 
 const controller = (() => {
+    const squares = document.querySelectorAll(".square");
+    const addMark = (e) => {
+        if (e.target.textContent === "") {
+            e.target.textContent = "X"
+        } 
+    }
 
+    squares.forEach(square => {
+        square.addEventListener("click", addMark);
+    });
+
+    const clearBoard = () => {
+        squares.forEach(square => {
+            square.textContent = "";
+        });
+    }
+
+    return {
+        clearBoard,
+    }
 })();
