@@ -14,16 +14,18 @@ body {
     width: 75vw;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     border: solid 1px red;
+    
 }
+
 .gameboard {
     width: 600px;
     height: 600px;
     display: flex;
     flex-wrap: wrap;
-    cursor: pointer;
 }
+
 
 h1 {
     font-size: 50px;
@@ -50,17 +52,30 @@ h1 {
 .middle-square {
     border: solid black 4px;
 }
+#signup-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    font-size: 25px;
+}
 
 .player-signup-area {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    font-size: 25px;
+    border: solid black 2px;
+    padding: 10px;
 }
 
-#ready-btn {
+.ready-btn {
    font-size: inherit;
    background-color: rgb(79, 155, 79);
    border-color: black;
    cursor: pointer;
+}
+
+.name-scorecard {
+    font-size: 30px;
+    width: 200px;
+    align-self: flex-start;
 }

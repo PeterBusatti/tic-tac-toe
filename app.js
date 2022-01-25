@@ -30,7 +30,7 @@ const gameBoard = (() => {
 
 })();
 
-gameBoard.render();
+//gameBoard.render();
 
 const Player = (mark) => {
     mark;
@@ -39,12 +39,14 @@ const Player = (mark) => {
         mark,
     };
 }
-const player1 = Player("X")
-const player2 = Player("O")
+const player1 = Player("X");
+const player2 = Player("O");
 
 const controller = (() => {
+    const ready = document.getElementById("ready-btn");
+
+   
     let currentPlayer = player1;
-    const squares = document.querySelectorAll(".square");
     
     const takeTurn = (e) => {
         if (e.target.textContent === "") {
@@ -59,6 +61,7 @@ const controller = (() => {
             
             togglePlayer();  
         } 
+        console.log("tre")
     };
 
     const clearBoard = () => {
@@ -73,10 +76,6 @@ const controller = (() => {
         }
         else {currentPlayer = player1;}
     };
-
-    squares.forEach(square => {
-        square.addEventListener("click", takeTurn);
-    });
 
     const isWin = (array) => {
         const mark = currentPlayer.mark
@@ -110,6 +109,32 @@ const controller = (() => {
         })
     };
 
+    const startGame = () => {
+        fillNames();
+        gameBoard.render();
+        
+        const squares = document.querySelectorAll(".square");
+        squares.forEach(square => {
+            square.addEventListener("click", takeTurn);
+        });
+    }
+
+    const fillNames = () => {
+        const p1scorecard = document.getElementById("player-one-name");
+        const p2scorecard = document.getElementById("player-two-name");
+        const p1Name = document.getElementById("player1input").value;
+        const p2Name = document.getElementById("player2input").value;
+        const signUp = document.getElementById("signup-wrapper");
+
+        
+        p1scorecard.textContent = `${p1Name} (X's)`;
+        p2scorecard.textContent = `${p2Name} (O's)`;
+        signUp.style.display = "none";
+    }
+
+    ready.addEventListener("click", startGame);
+
+    
     return {
         clearBoard, 
     };
