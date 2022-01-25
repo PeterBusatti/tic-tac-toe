@@ -3,12 +3,30 @@
     padding: 0px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    gap: 20px;
+}
+#wrapper {
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 1px red;
+}
 .gameboard {
     width: 600px;
     height: 600px;
-    border: solid red 1px;
     display: flex;
     flex-wrap: wrap;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 50px;
 }
 
 .square {
@@ -33,3 +51,16 @@
     border: solid black 4px;
 }
 
+.player-signup-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 25px;
+}
+
+#ready-btn {
+   font-size: inherit;
+   background-color: rgb(79, 155, 79);
+   border-color: black;
+   cursor: pointer;
+}
