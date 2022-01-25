@@ -39,13 +39,13 @@ const Player = (mark) => {
         mark,
     };
 }
-const player1 = Player("X");
-const player2 = Player("O");
 
 const controller = (() => {
     const ready = document.getElementById("ready-btn");
-
-   
+    const p1scorecard = document.getElementById("player-one-name");
+    const p2scorecard = document.getElementById("player-two-name");
+    const player1 = Player("X");
+    const player2 = Player("O");
     let currentPlayer = player1;
     
     const takeTurn = (e) => {
@@ -53,7 +53,7 @@ const controller = (() => {
             e.target.textContent = currentPlayer.mark;            
             
             if (isWin(gameBoard.boardArray)) {
-                console.log(`${currentPlayer.mark}'s Win` );
+                console.log(`${currentPlayer.mark}'s Win`);
             }
             else if (isDraw(gameBoard.boardArray) && !isWin(gameBoard.boardArray)) {
                 console.log("tie");
@@ -61,7 +61,6 @@ const controller = (() => {
             
             togglePlayer();  
         } 
-        console.log("tre")
     };
 
     const clearBoard = () => {
@@ -75,6 +74,8 @@ const controller = (() => {
             currentPlayer = player2;
         }
         else {currentPlayer = player1;}
+        p1scorecard.classList.toggle("turn");
+        p2scorecard.classList.toggle("turn");
     };
 
     const isWin = (array) => {
@@ -120,13 +121,10 @@ const controller = (() => {
     }
 
     const fillNames = () => {
-        const p1scorecard = document.getElementById("player-one-name");
-        const p2scorecard = document.getElementById("player-two-name");
         const p1Name = document.getElementById("player1input").value;
         const p2Name = document.getElementById("player2input").value;
         const signUp = document.getElementById("signup-wrapper");
 
-        
         p1scorecard.textContent = `${p1Name} (X's)`;
         p2scorecard.textContent = `${p2Name} (O's)`;
         signUp.style.display = "none";

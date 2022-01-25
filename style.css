@@ -10,13 +10,9 @@ body {
     background-color: lightblue;
     gap: 20px;
 }
-#wrapper {
-    width: 75vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border: solid 1px red;
-    
+
+h1 {
+    font-size: 50px;
 }
 
 .gameboard {
@@ -24,11 +20,6 @@ body {
     height: 600px;
     display: flex;
     flex-wrap: wrap;
-}
-
-
-h1 {
-    font-size: 50px;
 }
 
 .square {
@@ -39,19 +30,22 @@ h1 {
     font-size: 175px;
 }
 
-.middle-row {
-    border-top: solid black 4px;
-    border-bottom: solid black 4px;
+.name-scorecard {
+    font-size: 30px;
+    width: 200px;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
-.middle-column {
-    border-left: solid black 4px;
-    border-right: solid black 4px;
+#wrapper {
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid 1px red;
+    
 }
 
-.middle-square {
-    border: solid black 4px;
-}
 #signup-wrapper {
     display: flex;
     flex-direction: column;
@@ -74,8 +68,20 @@ h1 {
    cursor: pointer;
 }
 
-.name-scorecard {
-    font-size: 30px;
-    width: 200px;
-    align-self: flex-start;
+.turn {
+    background-color: green;
+}
+
+.middle-row {
+    border-top: solid black 4px;
+    border-bottom: solid black 4px;
+}
+
+.middle-column {
+    border-left: solid black 4px;
+    border-right: solid black 4px;
+}
+
+.middle-square {
+    border: solid black 4px;
 }
