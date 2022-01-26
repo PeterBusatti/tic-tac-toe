@@ -12,24 +12,28 @@
 <body>
     <h1>Tic-Tac-Toe</h1>
     <div id="wrapper">
-        <div id="signup-wrapper">
-            <div id="player-one-area" class="player-signup-area">
-                <label for="player1input">Enter Your Name:</label><br>
-                <input type="text" id="player1input">
-                <p>Your sign will be "X"</p>
-            </div>
-            <div id="player-two-area" class="player-signup-area">
-                <label for="player2input">Enter Your Name:</label><br>
-                <input type="text" id="player2input">
-                <p>Your sign will be "O"</p>
-            </div>
-            <input type="button" value="Ready?" class="ready-btn" id="ready-btn">
-        </div>
-
         <div id="player-one-name" class="name-scorecard turn"></div>
         <div id="gameboard" class="gameboard"></div>
         <div id="player-two-name" class="name-scorecard"></div>
     </div>
+    <form id="signup-wrapper">
+        <div id="inside-wrapper"> 
+            <section id="player-one-area" class="player-signup-area">
+                <label for="player1input">Enter Your Name:</label><br>
+                <input type="text" id="player1input" name="player1name" maxlength="20" size="20" placeholder="Player 1">
+                <p>Your sign will be "X"</p>
+            </section>
+       
+            <section id="player-two-area" class="player-signup-area">   
+                <label for="player2input">Enter Your Name:</label><br>
+                <input type="text" id="player2input" name="player2name" maxlength="20" size="20" placeholder="Player 2">
+                <p>Your sign will be "O"</p>
+            </section>
+        </div>
+        <div>
+            <input type="button" value="Ready?" class="ready-btn" id="ready-btn">
+        </div>
+    </form>
     
 </body>
 </html>

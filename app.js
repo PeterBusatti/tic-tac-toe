@@ -1,9 +1,16 @@
 const gameBoard = (() => {
+    const gameWrapper = document.getElementById("wrapper");
     const boardDom = document.getElementById("gameboard");
-    
     const boardArray = [];
+    const checkingArray = boardArray
     
     const render = () => {
+        gameWrapper.style.display = "flex";
+        gameWrapper.style.width = "75vw";
+        boardDom.style.width = "600px";
+        boardDom.style.height = "600px";
+        boardDom.style.display = "flex";
+
         for (let i = 0; i <= 8; i++) {
             const square = document.createElement("div");
                 
@@ -17,7 +24,7 @@ const gameBoard = (() => {
             else if (i === 4) {
                 square.classList.add("middle-square")
             }
-                
+    
             boardArray.push(square);
             boardDom.appendChild(square);
         }
@@ -25,7 +32,7 @@ const gameBoard = (() => {
  
     return {
         render,
-        boardArray,
+        checkingArray,
     };
 
 })();
@@ -52,10 +59,10 @@ const controller = (() => {
         if (e.target.textContent === "") {
             e.target.textContent = currentPlayer.mark;            
             
-            if (isWin(gameBoard.boardArray)) {
+            if (isWin(gameBoard.checkingArray)) {
                 console.log(`${currentPlayer.mark}'s Win`);
             }
-            else if (isDraw(gameBoard.boardArray) && !isWin(gameBoard.boardArray)) {
+            else if (isDraw(gameBoard.checkingArray) && !isWin(gameBoard.checkingArray)) {
                 console.log("tie");
             }
             
@@ -64,7 +71,7 @@ const controller = (() => {
     };
 
     const clearBoard = () => {
-        gameBoard.boardArray.forEach(square => {
+        gameBoard.checkingArray.forEach(square => {
             square.textContent = "";
         });
     };

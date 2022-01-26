@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: lightblue;
+    background-color: #BFEBFF;
     gap: 20px;
 }
 
@@ -16,10 +16,9 @@ h1 {
 }
 
 .gameboard {
-    width: 600px;
-    height: 600px;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
+    cursor: pointer;
 }
 
 .square {
@@ -31,7 +30,7 @@ h1 {
 }
 
 .name-scorecard {
-    font-size: 30px;
+    font-size: 45px;
     width: 200px;
     overflow-wrap: break-word;
     text-align: center;
@@ -53,19 +52,38 @@ h1 {
     font-size: 25px;
 }
 
+#inside-wrapper {
+    display: flex;
+    gap: 300px
+}
+
 .player-signup-area {
     display: flex;
     flex-direction: column;
     gap: 5px;
     border: solid black 2px;
     padding: 10px;
+    background-color: #997345;
+}
+
+form div {
+   align-self: center;
+}
+
+legend {
+    float: left;
 }
 
 .ready-btn {
    font-size: inherit;
-   background-color: rgb(79, 155, 79);
+   background-color: rgb(134, 170, 134);
    border-color: black;
    cursor: pointer;
+   padding: 10px;
+}
+
+.ready-btn:hover {
+    background-color: rgb(79, 155, 79);
 }
 
 .turn {
