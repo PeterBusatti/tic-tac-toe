@@ -15,6 +15,13 @@ h1 {
     font-size: 50px;
 }
 
+.main-wrapper {
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .gameboard {
     display: none;
     flex-wrap: wrap;
@@ -30,21 +37,14 @@ h1 {
     font-size: 175px;
 }
 
-.name-scorecard {
+.scorecard {
     font-size: 45px;
     width: 200px;
     overflow-wrap: break-word;
     text-align: center;
 }
 
-#wrapper {
-    width: 75vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-#signup-wrapper {
+.signup-wrapper {
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -55,7 +55,7 @@ input[type="text"] {
     font-size: inherit;
 }
 
-#inside-wrapper {
+.inside-wrapper {
     display: flex;
     gap: 300px
 }
@@ -73,11 +73,7 @@ form div {
    align-self: center;
 }
 
-legend {
-    float: left;
-}
-
-.ready-btn, #restart-btn {
+.btn {
    font-size: 25px;
    height: 60px;
    background-color: rgb(134, 170, 134);
@@ -86,23 +82,23 @@ legend {
    padding: 10px;
 }
 
-#display-wrapper {
+.display-wrapper {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-#display-area {
+.display-area {
     font-size: 75px;
     background-color: #e4f4fc;
     padding: 0px 25px;
 }
 
-#restart-btn {
+.restart {
     display: none;
 }
 
-.ready-btn:hover, #restart-btn:hover {
+.btn:hover {
     background-color: rgb(79, 155, 79);
 }
 
@@ -110,6 +106,7 @@ legend {
     background-color: green;
 }
 
+/* for gameboard creation */
 .middle-row {
     border-top: solid black 4px;
     border-bottom: solid black 4px;

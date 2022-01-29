@@ -11,31 +11,31 @@
 
 <body>
     <h1>Tic-Tac-Toe</h1>
-    <div id="wrapper">
-        <div id="player-one-name" class="name-scorecard"></div>
+    <div id="main-wrapper" class="main-wrapper">
+        <div id="player-one-card" class="scorecard"></div>
         <div id="gameboard" class="gameboard"></div>
-        <div id="player-two-name" class="name-scorecard"></div>
+        <div id="player-two-card" class="scorecard"></div>
     </div>
-    <div id="display-wrapper">
-        <p id="display-area"></p>
-        <button id="restart-btn">Restart?</button>
+    <div id="display-wrapper" class="display-wrapper">
+        <p id="display-area" class="display-area"></p>
+        <button id="restart-btn" class="restart btn">Restart?</button>
     </div>
-    <form id="signup-wrapper">
-        <div id="inside-wrapper"> 
-            <section id="player-one-area" class="player-signup-area">
-                <label for="player1input">Enter Your Name:</label><br>
-                <input type="text" id="player1input" name="player1name" maxlength="20" size="20" placeholder="Player 1">
+    <form id="signup-wrapper" class="signup-wrapper">
+        <div id="inside-wrapper" class="inside-wrapper"> 
+            <section class="player-signup-area">
+                <label for="p1-input">Enter Your Name:</label><br>
+                <input type="text" id="p1-input" name="p1-input" maxlength="20" size="20" placeholder="Player 1">
                 <p>Your sign will be "X"</p>
             </section>
        
-            <section id="player-two-area" class="player-signup-area">   
-                <label for="player2input">Enter Your Name:</label><br>
-                <input type="text" id="player2input" name="player2name" maxlength="20" size="20" placeholder="Player 2">
+            <section class="player-signup-area">   
+                <label for="p2-input">Enter Your Name:</label><br>
+                <input type="text" id="p2-input" name="p2-input" maxlength="20" size="20" placeholder="Player 2">
                 <p>Your sign will be "O"</p>
             </section>
         </div>
         <div>
-            <input type="button" value="Ready?" class="ready-btn" id="ready-btn">
+            <input type="button" value="Ready?" class="ready btn" id="ready-btn">
         </div>
     </form>
     

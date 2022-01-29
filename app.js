@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-    const gameWrapper = document.getElementById("wrapper");
+    const gameWrapper = document.getElementById("main-wrapper");
     const boardDom = document.getElementById("gameboard");
     const boardArray = [];
     const checkingArray = boardArray
@@ -69,8 +69,8 @@ const Player = (mark) => {
 const controller = (() => {
     const readyBtn = document.getElementById("ready-btn");
     const restartBtn = document.getElementById("restart-btn");
-    const p1scorecard = document.getElementById("player-one-name");
-    const p2scorecard = document.getElementById("player-two-name");
+    const p1scorecard = document.getElementById("player-one-card");
+    const p2scorecard = document.getElementById("player-two-card");
     const displayArea = document.getElementById("display-area");
     const player1 = Player("X");
     const player2 = Player("O");
@@ -154,8 +154,8 @@ const controller = (() => {
     }
 
     const fillNames = () => {
-        player1.name = document.getElementById("player1input").value;
-        player2.name = document.getElementById("player2input").value;
+        player1.name = document.getElementById("p1-input").value;
+        player2.name = document.getElementById("p2-input").value;
         const signUp = document.getElementById("signup-wrapper");
 
         p1scorecard.textContent = `${player1.name} (${player1.mark}'s)`;
