@@ -29,10 +29,22 @@ const gameBoard = (() => {
             boardDom.appendChild(square);
         }
     };
+
+    const toggleOpacity = () => {
+        const opacity = window.getComputedStyle(boardDom).getPropertyValue("opacity");
+        
+        if (opacity === "1") {
+            boardDom.style.opacity = "0.5";
+        }
+        else if (opacity === "0.5") {
+            boardDom.style.opacity = "1";
+        }
+    }
  
     return {
         render,
         checkingArray,
+        toggleOpacity,
     };
 
 })();
@@ -41,33 +53,40 @@ const gameBoard = (() => {
 
 const Player = (mark) => {
     mark;
+    name;
+    const placeMark = (e) => {
+        if (e.target.textContent === "") {
+            e.target.textContent = mark;
+        }
+    };
 
     return {
         mark,
+        placeMark
     };
 }
 
 const controller = (() => {
-    const ready = document.getElementById("ready-btn");
+    const readyBtn = document.getElementById("ready-btn");
+    const restartBtn = document.getElementById("restart-btn");
     const p1scorecard = document.getElementById("player-one-name");
     const p2scorecard = document.getElementById("player-two-name");
+    const displayArea = document.getElementById("display-area");
     const player1 = Player("X");
     const player2 = Player("O");
     let currentPlayer = player1;
     
     const takeTurn = (e) => {
-        if (e.target.textContent === "") {
-            e.target.textContent = currentPlayer.mark;            
+        currentPlayer.placeMark(e);        
             
-            if (isWin(gameBoard.checkingArray)) {
-                console.log(`${currentPlayer.mark}'s Win`);
-            }
-            else if (isDraw(gameBoard.checkingArray) && !isWin(gameBoard.checkingArray)) {
-                console.log("tie");
-            }
+        if (isWin(gameBoard.checkingArray)) {
+            endGame();
+        }
+        else if (isDraw(gameBoard.checkingArray) && !isWin(gameBoard.checkingArray)) {
+            endGame();   
+        }
             
-            togglePlayer();  
-        } 
+        togglePlayer();   
     };
 
     const clearBoard = () => {
@@ -81,8 +100,7 @@ const controller = (() => {
             currentPlayer = player2;
         }
         else {currentPlayer = player1;}
-        p1scorecard.classList.toggle("turn");
-        p2scorecard.classList.toggle("turn");
+        
     };
 
     const isWin = (array) => {
@@ -128,19 +146,58 @@ const controller = (() => {
     }
 
     const fillNames = () => {
-        const p1Name = document.getElementById("player1input").value;
-        const p2Name = document.getElementById("player2input").value;
+        player1.name = document.getElementById("player1input").value;
+        player2.name = document.getElementById("player2input").value;
         const signUp = document.getElementById("signup-wrapper");
 
-        p1scorecard.textContent = `${p1Name} (X's)`;
-        p2scorecard.textContent = `${p2Name} (O's)`;
+        p1scorecard.textContent = `${player1.name} (${player1.mark}'s)`;
+        p2scorecard.textContent = `${player2.name} (${player2.name}'s)`;
         signUp.style.display = "none";
     }
 
-    ready.addEventListener("click", startGame);
+    readyBtn.addEventListener("click", startGame);
 
+    const endGame = () => {        
+        if (isWin(gameBoard.checkingArray)) {
+            displayArea.textContent = `${currentPlayer.name} Wins!!`;
+        }
+        else {
+            displayArea.textContent = "Tie! No winner";
+        }
+
+        const squares = document.querySelectorAll(".square");
+        squares.forEach(square => {
+            square.removeEventListener("click", takeTurn);
+        });
+
+        gameBoard.toggleOpacity();
+        restartBtn.style.display = "inline-block";
+    }
+
+    const restartGame = () => {
+        clearBoard();
+        gameBoard.toggleOpacity();
+
+        const squares = document.querySelectorAll(".square");
+        squares.forEach(square => {
+            square.addEventListener("click", takeTurn);
+        });
+
+        displayArea.textContent = "";
+        restartBtn.style.display = "none";
+
+        if (currentPlayer === player1) {
+            currentPlayer = player2;
+        }
+        else if (currentPlayer === player2) {
+            currentPlayer = player1;
+        }
+
+    }
     
-    return {
-        clearBoard, 
+    restartBtn.addEventListener("click", restartGame);
+
+    return { 
+        
     };
 })();

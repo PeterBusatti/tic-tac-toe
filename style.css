@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #BFEBFF;
-    gap: 20px;
+    gap: 10px;
 }
 
 h1 {
@@ -19,6 +19,7 @@ h1 {
     display: none;
     flex-wrap: wrap;
     cursor: pointer;
+    opacity: 1;
 }
 
 .square {
@@ -41,8 +42,6 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: solid 1px red;
-    
 }
 
 #signup-wrapper {
@@ -74,15 +73,25 @@ legend {
     float: left;
 }
 
-.ready-btn {
-   font-size: inherit;
+.ready-btn, #restart-btn {
+   font-size: 25px;
+   height: 60px;
    background-color: rgb(134, 170, 134);
    border-color: black;
    cursor: pointer;
    padding: 10px;
 }
 
-.ready-btn:hover {
+#display-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+#restart-btn {
+    display: none;
+}
+
+.ready-btn:hover, #restart-btn:hover {
     background-color: rgb(79, 155, 79);
 }
 
@@ -102,4 +111,8 @@ legend {
 
 .middle-square {
     border: solid black 4px;
+}
+
+#display-area {
+    font-size: 75px;
 }
