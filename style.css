@@ -90,6 +90,7 @@ legend {
     display: flex;
     gap: 20px;
     align-items: center;
+    background-color: #e4f4fc;
 }
 #restart-btn {
     display: none;
