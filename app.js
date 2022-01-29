@@ -49,7 +49,6 @@ const gameBoard = (() => {
 
 })();
 
-//gameBoard.render();
 
 const Player = (mark) => {
     mark;
@@ -62,25 +61,24 @@ const Player = (mark) => {
 
     return {
         mark,
-        placeMark
+        name,
+        placeMark,
     };
 }
 
 const controller = (() => {
     const readyBtn = document.getElementById("ready-btn");
     const restartBtn = document.getElementById("restart-btn");
-    const p1scorecard = document.getElementById("player-one-card");
-    const p2scorecard = document.getElementById("player-two-card");
-    const displayArea = document.getElementById("display-area");
+    const infoDisplayArea = document.getElementById("display-area");
+    
     const player1 = Player("X");
     const player2 = Player("O");
-    let currentPlayer = player1;
     
-    const turnIndicator = () => {
-        displayArea.textContent = `${currentPlayer.name}'s Turn (${currentPlayer.mark}'s)`;
-    }
+    let _firstPlayer = player1;
+    let _currentPlayer;
+
     const takeTurn = (e) => {
-        currentPlayer.placeMark(e);        
+        _currentPlayer.placeMark(e);        
             
         if (isWin(gameBoard.checkingArray)) {
             endGame();
@@ -95,22 +93,21 @@ const controller = (() => {
         turnIndicator();   
     };
 
-    const clearBoard = () => {
-        gameBoard.checkingArray.forEach(square => {
-            square.textContent = "";
-        });
+    const togglePlayer = () => {
+        if (_currentPlayer === player1) {
+            _currentPlayer = player2;
+        }
+        else if (_currentPlayer === player2) {
+            _currentPlayer = player1;
+        }    
     };
 
-    const togglePlayer = () => {
-        if (currentPlayer === player1) {
-            currentPlayer = player2;
-        }
-        else {currentPlayer = player1;}
-        
+    const turnIndicator = () => {
+        infoDisplayArea.textContent = `${_currentPlayer.name}'s Turn (${_currentPlayer.mark}'s)`;
     };
 
     const isWin = (array) => {
-        const mark = currentPlayer.mark
+        const mark = _currentPlayer.mark
         const winningArrays = [
             [0, 1, 2],
             [3, 4, 5],
@@ -142,35 +139,39 @@ const controller = (() => {
     };
 
     const startGame = () => {
+        const signUp = document.getElementById("signup-wrapper");
+        
+        _currentPlayer = _firstPlayer;
         fillNames();
         gameBoard.render();
-        
+        turnIndicator();
+        signUp.style.display = "none";
+
         const squares = document.querySelectorAll(".square");
         squares.forEach(square => {
             square.addEventListener("click", takeTurn);
         });
-
-        turnIndicator();
-    }
+    };
 
     const fillNames = () => {
+        const p1scorecard = document.getElementById("player-one-card");
+        const p2scorecard = document.getElementById("player-two-card");
+
         player1.name = document.getElementById("p1-input").value;
         player2.name = document.getElementById("p2-input").value;
-        const signUp = document.getElementById("signup-wrapper");
 
         p1scorecard.textContent = `${player1.name} (${player1.mark}'s)`;
         p2scorecard.textContent = `${player2.name} (${player2.mark}'s)`;
-        signUp.style.display = "none";
-    }
+    };
 
     readyBtn.addEventListener("click", startGame);
 
     const endGame = () => {        
         if (isWin(gameBoard.checkingArray)) {
-            displayArea.textContent = `${currentPlayer.name} Wins!!`;
+            infoDisplayArea.textContent = `${_currentPlayer.name} Wins!!`;
         }
         else {
-            displayArea.textContent = "Tie! No winner";
+            infoDisplayArea.textContent = "Tie! No winner";
         }
 
         const squares = document.querySelectorAll(".square");
@@ -179,7 +180,7 @@ const controller = (() => {
         });
 
         gameBoard.toggleOpacity();
-        restartBtn.style.display = "inline-block";
+        restartBtn.style.display = "block";
     }
 
     const restartGame = () => {
@@ -193,15 +194,23 @@ const controller = (() => {
 
         restartBtn.style.display = "none";
 
-        if (currentPlayer === player1) {
-            currentPlayer = player2;
+        /* changing who starts a new round first */
+        if (_firstPlayer === player1) {
+            _firstPlayer = player2;
         }
-        else if (currentPlayer === player2) {
-            currentPlayer = player1;
+        else if (_firstPlayer === player2) {
+            _firstPlayer = player1;
         }
 
+        _currentPlayer = _firstPlayer;
         turnIndicator();
-    }
+    };
+
+    const clearBoard = () => {
+        gameBoard.checkingArray.forEach(square => {
+            square.textContent = "";
+        });
+    };
     
     restartBtn.addEventListener("click", restartGame);
 
