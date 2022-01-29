@@ -90,8 +90,14 @@ legend {
     display: flex;
     gap: 20px;
     align-items: center;
-    background-color: #e4f4fc;
 }
+
+#display-area {
+    font-size: 75px;
+    background-color: #e4f4fc;
+    padding: 0px 25px;
+}
+
 #restart-btn {
     display: none;
 }
@@ -118,6 +124,3 @@ legend {
     border: solid black 4px;
 }
 
-#display-area {
-    font-size: 75px;
-}
