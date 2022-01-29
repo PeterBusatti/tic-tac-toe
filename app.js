@@ -53,7 +53,7 @@ const gameBoard = (() => {
 
 const Player = (mark) => {
     mark;
-    name;
+    const name = "";
     const placeMark = (e) => {
         if (e.target.textContent === "") {
             e.target.textContent = mark;
@@ -76,17 +76,23 @@ const controller = (() => {
     const player2 = Player("O");
     let currentPlayer = player1;
     
+    const turnIndicator = () => {
+        displayArea.textContent = `${currentPlayer.name}'s Turn (${currentPlayer.mark}'s)`;
+    }
     const takeTurn = (e) => {
         currentPlayer.placeMark(e);        
             
         if (isWin(gameBoard.checkingArray)) {
             endGame();
+            return;
         }
         else if (isDraw(gameBoard.checkingArray) && !isWin(gameBoard.checkingArray)) {
-            endGame();   
+            endGame(); 
+            return;
         }
             
-        togglePlayer();   
+        togglePlayer();
+        turnIndicator();   
     };
 
     const clearBoard = () => {
@@ -143,6 +149,8 @@ const controller = (() => {
         squares.forEach(square => {
             square.addEventListener("click", takeTurn);
         });
+
+        turnIndicator();
     }
 
     const fillNames = () => {
@@ -151,7 +159,7 @@ const controller = (() => {
         const signUp = document.getElementById("signup-wrapper");
 
         p1scorecard.textContent = `${player1.name} (${player1.mark}'s)`;
-        p2scorecard.textContent = `${player2.name} (${player2.name}'s)`;
+        p2scorecard.textContent = `${player2.name} (${player2.mark}'s)`;
         signUp.style.display = "none";
     }
 
@@ -183,7 +191,6 @@ const controller = (() => {
             square.addEventListener("click", takeTurn);
         });
 
-        displayArea.textContent = "";
         restartBtn.style.display = "none";
 
         if (currentPlayer === player1) {
@@ -193,6 +200,7 @@ const controller = (() => {
             currentPlayer = player1;
         }
 
+        turnIndicator();
     }
     
     restartBtn.addEventListener("click", restartGame);

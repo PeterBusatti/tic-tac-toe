@@ -51,6 +51,10 @@ h1 {
     font-size: 25px;
 }
 
+input[type="text"] {
+    font-size: inherit;
+}
+
 #inside-wrapper {
     display: flex;
     gap: 300px
