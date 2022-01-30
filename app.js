@@ -2,7 +2,6 @@ const gameBoard = (() => {
     const gameWrapper = document.getElementById("main-wrapper");
     const boardDom = document.getElementById("gameboard");
     const boardArray = [];
-    const checkingArray = boardArray
     
     const render = () => {
         gameWrapper.style.display = "flex";
@@ -43,7 +42,6 @@ const gameBoard = (() => {
  
     return {
         render,
-        checkingArray,
         toggleOpacity,
     };
 
@@ -70,7 +68,7 @@ const controller = (() => {
     const readyBtn = document.getElementById("ready-btn");
     const restartBtn = document.getElementById("restart-btn");
     const infoDisplayArea = document.getElementById("display-area");
-    
+
     const player1 = Player("X");
     const player2 = Player("O");
     
@@ -78,13 +76,14 @@ const controller = (() => {
     let _currentPlayer;
 
     const takeTurn = (e) => {
+        const gameArray = Array.from(document.querySelectorAll(".square"));
         _currentPlayer.placeMark(e);        
             
-        if (isWin(gameBoard.checkingArray)) {
+        if (isWin(gameArray)) {
             endGame();
             return;
         }
-        else if (isDraw(gameBoard.checkingArray) && !isWin(gameBoard.checkingArray)) {
+        else if (isDraw(gameArray) && !isWin(gameArray)) {
             endGame(); 
             return;
         }
@@ -166,8 +165,9 @@ const controller = (() => {
 
     readyBtn.addEventListener("click", startGame);
 
-    const endGame = () => {        
-        if (isWin(gameBoard.checkingArray)) {
+    const endGame = () => {  
+        const gameArray = Array.from(document.querySelectorAll(".square"));      
+        if (isWin(gameArray)) {
             infoDisplayArea.textContent = `${_currentPlayer.name} Wins!!`;
         }
         else {
@@ -181,7 +181,7 @@ const controller = (() => {
 
         gameBoard.toggleOpacity();
         restartBtn.style.display = "block";
-    }
+    };
 
     const restartGame = () => {
         clearBoard();
@@ -207,7 +207,8 @@ const controller = (() => {
     };
 
     const clearBoard = () => {
-        gameBoard.checkingArray.forEach(square => {
+        const gameArray = Array.from(document.querySelectorAll(".square"));
+        gameArray.forEach(square => {
             square.textContent = "";
         });
     };
