@@ -39,10 +39,15 @@ const gameBoard = (() => {
             boardDom.style.opacity = "1";
         }
     }
- 
+    
+    const getGameArray = () => {
+        return boardArray;
+    }
+
     return {
         render,
         toggleOpacity,
+        getGameArray,
     };
 
 })();
@@ -76,14 +81,13 @@ const controller = (() => {
     let _currentPlayer;
 
     const takeTurn = (e) => {
-        const gameArray = Array.from(document.querySelectorAll(".square"));
         _currentPlayer.placeMark(e);        
             
-        if (isWin(gameArray)) {
+        if (isWin(gameBoard.getGameArray())) {
             endGame();
             return;
         }
-        else if (isDraw(gameArray) && !isWin(gameArray)) {
+        else if (isDraw(gameBoard.getGameArray()) && !isWin(gameBoard.getGameArray())) {
             endGame(); 
             return;
         }
@@ -165,9 +169,8 @@ const controller = (() => {
 
     readyBtn.addEventListener("click", startGame);
 
-    const endGame = () => {  
-        const gameArray = Array.from(document.querySelectorAll(".square"));      
-        if (isWin(gameArray)) {
+    const endGame = () => {        
+        if (isWin(gameBoard.getGameArray())) {
             infoDisplayArea.textContent = `${_currentPlayer.name} Wins!!`;
         }
         else {
@@ -207,8 +210,7 @@ const controller = (() => {
     };
 
     const clearBoard = () => {
-        const gameArray = Array.from(document.querySelectorAll(".square"));
-        gameArray.forEach(square => {
+        gameBoard.getGameArray().forEach(square => {
             square.textContent = "";
         });
     };
